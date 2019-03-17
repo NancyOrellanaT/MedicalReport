@@ -1,0 +1,11 @@
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\MedicalReport.exe.config
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\MedicalReport.exe
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\MedicalReport.pdb
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\MedicalReport.csprojAssemblyReference.cache
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\MedicalReport.Properties.Resources.resources
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\MedicalReport.csproj.GenerateResource.cache
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\MedicalReport.csproj.CoreCompileInputs.cache
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\MedicalReport.exe
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\MedicalReport.pdb
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\MedicalReport.FrmReporteMedico.resources
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\MedicalReport.FrmPaciente.resources
