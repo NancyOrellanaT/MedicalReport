@@ -9,3 +9,18 @@ C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\Med
 C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\MedicalReport.pdb
 C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\MedicalReport.FrmReporteMedico.resources
 C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\MedicalReport.FrmPaciente.resources
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\bin\Debug\MedicalReport.exe.config
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\bin\Debug\MedicalReport.exe
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\bin\Debug\MedicalReport.pdb
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\obj\Debug\MedicalReport.csprojAssemblyReference.cache
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\obj\Debug\MedicalReport.FrmPaciente.resources
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\obj\Debug\MedicalReport.FrmReporteMedico.resources
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\obj\Debug\MedicalReport.Properties.Resources.resources
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\obj\Debug\MedicalReport.csproj.GenerateResource.cache
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\obj\Debug\MedicalReport.csproj.CoreCompileInputs.cache
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\obj\Debug\MedicalReport.exe
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\obj\Debug\MedicalReport.pdb
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\bin\Debug\Newtonsoft.Json.dll
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\bin\Debug\Newtonsoft.Json.pdb
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\bin\Debug\Newtonsoft.Json.xml
+C:\Dicom\Dicom2\MedicalReport\MedicalReport\obj\Debug\MedicalReport.csproj.CopyComplete
