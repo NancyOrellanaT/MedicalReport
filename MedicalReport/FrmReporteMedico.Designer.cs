@@ -1,4 +1,6 @@
-﻿namespace MedicalReport
+﻿using System;
+
+namespace MedicalReport
 {
     partial class FrmReporteMedico
     {
@@ -110,7 +112,7 @@
 			this.btnListar.TabIndex = 6;
 			this.btnListar.Text = "LISTAR PACIENTES";
 			this.btnListar.UseVisualStyleBackColor = true;
-			this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
+			this.btnListar.Click += new System.EventHandler(this.btnListar_ClickAsync);
 			// 
 			// txtCodigo
 			// 
@@ -206,9 +208,11 @@
 
         }
 
-        #endregion
+		
 
-        private System.Windows.Forms.Panel panel1;
+		#endregion
+
+		private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnBuscar;

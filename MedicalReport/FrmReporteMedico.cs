@@ -39,13 +39,19 @@ namespace MedicalReport
             }
         }
 		//lista  paciente
-		public async Task<List<string>> ListarPacientes()
+		
+
+		//boton de listas
+		private async void btnListar_ClickAsync(object sender, EventArgs e)
 		{
+
 			var datos = await PacsConexion.ObtenerDatos("http://localhost:8042/patients/");
-			List<string> pacientes=null;
+			List<string> pacientes = null;
+
+			string valor = "";
 			//separo los pacientes 			
 			string[] lista_pacintes = datos.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-			
+
 
 			if (lista_pacintes.Length >= 3)
 			{
@@ -53,29 +59,24 @@ namespace MedicalReport
 				{
 					lista_pacintes[x] = lista_pacintes[x].Replace(',', ' ').Replace('"', ' ');
 					string[] idPaciente = lista_pacintes[x].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-					pacientes.Add( await PacsConexion.ObtenerDatos("http://localhost:8042/patients/" + idPaciente[0]));
+					 valor +=(await PacsConexion.ObtenerDatos("http://localhost:8042/patients/" + idPaciente[0]))+"+";
 				}
 			}
 			else
 			{
 				lista_pacintes[0] = lista_pacintes[0].Replace(',', ' ').Replace('"', ' ');
 				string[] idPaciente = lista_pacintes[0].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-				pacientes.Add( await PacsConexion.ObtenerDatos("http://localhost:8042/patients/" + idPaciente[1]));
+				valor +=(await PacsConexion.ObtenerDatos("http://localhost:8042/patients/" + idPaciente[1]))+"+";
 			}
-			return pacientes;
-			
-		}
-
-		//boton de listas
-		private async void btnListar_Click  (object sender, EventArgs e)
-		{
+			label3.Text = valor;
 			//guarda datos de cada paciente
-			List<string> PacientesDatos = await ListarPacientes();
-			List<Paciente.PacienteCabeza> DatosPacientes=null;
+			
+
+			/*List<Paciente.PacienteCabeza> DatosPacientes=null;
 			for(int x=0;x<PacientesDatos.Count;x++)
 			{
 				DatosPacientes.Add(JsonConvert.DeserializeObject<Paciente.PacienteCabeza>(PacientesDatos[x]));
-			}
+			}*/
 		//	Paciente.PacienteCabeza o = JsonConvert.DeserializeObject<Paciente.PacienteCabeza>(valor1);
 			//var model = JsonConvert.DeserializeObject<List<Paciente.PacienteCabeza>>(valor1);
 			//DataTable tabla= PacsConexion.ToDataTable<Paciente>(model);
