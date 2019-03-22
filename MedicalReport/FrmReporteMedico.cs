@@ -43,59 +43,26 @@ namespace MedicalReport
 
 		//boton de listas
 		private async void btnListar_ClickAsync(object sender, EventArgs e)
-		{
-
-			var datos = await PacsConexion.ObtenerDatos("http://localhost:8042/patients/");
-			List<string> pacientes = null;
-
-			string valor = "";
-			//separo los pacientes 			
-			string[] lista_pacintes = datos.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
-
-			if (lista_pacintes.Length >= 3)
-			{
-				for (int x = 1; x < lista_pacintes.Length - 1; x++)
-				{
-					lista_pacintes[x] = lista_pacintes[x].Replace(',', ' ').Replace('"', ' ');
-					string[] idPaciente = lista_pacintes[x].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-					 valor +=(await PacsConexion.ObtenerDatos("http://localhost:8042/patients/" + idPaciente[0]))+"+";
-				}
-			}
-			else
-			{
-				lista_pacintes[0] = lista_pacintes[0].Replace(',', ' ').Replace('"', ' ');
-				string[] idPaciente = lista_pacintes[0].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-				valor +=(await PacsConexion.ObtenerDatos("http://localhost:8042/patients/" + idPaciente[1]))+"+";
-			}
-			label3.Text = valor;
-			//guarda datos de cada paciente
+		{ 
+			//obtiene los datos
+			List<string> pacientes = new List<string>(await PacienteControl.ObtenerPacientes());			
 			
+			//guarda datos de cada paciente
+			List<Paciente.PacienteCabeza> DatosPacientes=new List<Paciente.PacienteCabeza>(PacienteControl.ConvertirDatos(pacientes));
 
-			/*List<Paciente.PacienteCabeza> DatosPacientes=null;
-			for(int x=0;x<PacientesDatos.Count;x++)
+			//añado a la tabla
+			dgvPacientes.Rows.Clear();
+			foreach(var paciente in DatosPacientes)
 			{
-				DatosPacientes.Add(JsonConvert.DeserializeObject<Paciente.PacienteCabeza>(PacientesDatos[x]));
-			}*/
-		//	Paciente.PacienteCabeza o = JsonConvert.DeserializeObject<Paciente.PacienteCabeza>(valor1);
-			//var model = JsonConvert.DeserializeObject<List<Paciente.PacienteCabeza>>(valor1);
-			//DataTable tabla= PacsConexion.ToDataTable<Paciente>(model);
-			/*DataTable dt = new DataTable("OutputData");
-
-			DataRow dr = dt.NewRow();
-			dt.Rows.Add(dr);
-
-			o.GetType().GetProperties().ToList().ForEach(f =>
-			{
-				try
+				string allstudies="";
+				for(int x=0;x<paciente.Studies.Count;x++)
 				{
-					f.GetValue(o, null);
-					dt.Columns.Add(f.Name, f.PropertyType);
-					dt.Rows[0][f.Name] = f.GetValue(o, null);
-				}
-				catch { }
-			});
-			dgvPacientes.DataSource=(dt);*/
+					allstudies += paciente.Studies[x];
+				}				
+				
+				this.dgvPacientes.Rows.Add(paciente.MainDicomTags.PatientID, paciente.MainDicomTags.PatientName,paciente.MainDicomTags.PatientBirthDate,paciente.MainDicomTags.PatientSex, allstudies, paciente.Type);
+			}
+		
 		}
 		
 

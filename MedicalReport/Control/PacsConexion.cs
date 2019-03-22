@@ -35,11 +35,7 @@ namespace MedicalReport.Control
 				}
 			}
 		}
-		//enviar archivo al pacs
-		public void EnviarArchivo()
-		{
-
-		}
+		
 		public static DataTable ToDataTable<T>(IList<T> data)
 		{
 			PropertyDescriptorCollection props =

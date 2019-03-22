@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\PacienteControl.cs" />
     <Compile Include="Control\PacsConexion.cs" />
     <Compile Include="Entity\Paciente.cs" />
     <Compile Include="FrmPaciente.cs">

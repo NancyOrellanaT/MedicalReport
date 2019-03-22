@@ -41,7 +41,12 @@ namespace MedicalReport
 			this.btnBuscar = new System.Windows.Forms.Button();
 			this.btnSeleccionar = new System.Windows.Forms.Button();
 			this.dgvPacientes = new System.Windows.Forms.DataGridView();
-			this.label3 = new System.Windows.Forms.Label();
+			this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.PatientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Birth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Studies = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.panel2.SuspendLayout();
@@ -56,7 +61,7 @@ namespace MedicalReport
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.pictureBox1);
 			this.panel1.Location = new System.Drawing.Point(0, -1);
-			this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.panel1.Margin = new System.Windows.Forms.Padding(2);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(952, 81);
 			this.panel1.TabIndex = 0;
@@ -79,7 +84,7 @@ namespace MedicalReport
 			this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
 			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.pictureBox1.Location = new System.Drawing.Point(860, 11);
-			this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(71, 62);
 			this.pictureBox1.TabIndex = 0;
@@ -90,14 +95,13 @@ namespace MedicalReport
 			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.panel2.Controls.Add(this.label3);
 			this.panel2.Controls.Add(this.btnListar);
 			this.panel2.Controls.Add(this.txtCodigo);
 			this.panel2.Controls.Add(this.label1);
 			this.panel2.Controls.Add(this.btnBuscar);
 			this.panel2.Controls.Add(this.btnSeleccionar);
 			this.panel2.Location = new System.Drawing.Point(0, 76);
-			this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.panel2.Margin = new System.Windows.Forms.Padding(2);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(952, 158);
 			this.panel2.TabIndex = 2;
@@ -106,7 +110,7 @@ namespace MedicalReport
 			// 
 			this.btnListar.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.btnListar.Location = new System.Drawing.Point(673, 100);
-			this.btnListar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnListar.Margin = new System.Windows.Forms.Padding(2);
 			this.btnListar.Name = "btnListar";
 			this.btnListar.Size = new System.Drawing.Size(218, 30);
 			this.btnListar.TabIndex = 6;
@@ -119,7 +123,7 @@ namespace MedicalReport
 			this.txtCodigo.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.txtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtCodigo.Location = new System.Drawing.Point(353, 69);
-			this.txtCodigo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.txtCodigo.Margin = new System.Windows.Forms.Padding(2);
 			this.txtCodigo.Multiline = true;
 			this.txtCodigo.Name = "txtCodigo";
 			this.txtCodigo.Size = new System.Drawing.Size(289, 30);
@@ -143,7 +147,7 @@ namespace MedicalReport
 			// 
 			this.btnBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.btnBuscar.Location = new System.Drawing.Point(673, 61);
-			this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
 			this.btnBuscar.Name = "btnBuscar";
 			this.btnBuscar.Size = new System.Drawing.Size(218, 30);
 			this.btnBuscar.TabIndex = 3;
@@ -154,7 +158,7 @@ namespace MedicalReport
 			// 
 			this.btnSeleccionar.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.btnSeleccionar.Location = new System.Drawing.Point(673, 26);
-			this.btnSeleccionar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnSeleccionar.Margin = new System.Windows.Forms.Padding(2);
 			this.btnSeleccionar.Name = "btnSeleccionar";
 			this.btnSeleccionar.Size = new System.Drawing.Size(218, 30);
 			this.btnSeleccionar.TabIndex = 2;
@@ -168,21 +172,55 @@ namespace MedicalReport
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.dgvPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvPacientes.Location = new System.Drawing.Point(11, 248);
-			this.dgvPacientes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.dgvPacientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.PatientName,
+            this.Birth,
+            this.Gender,
+            this.Studies,
+            this.Type});
+			this.dgvPacientes.Location = new System.Drawing.Point(11, 264);
+			this.dgvPacientes.Margin = new System.Windows.Forms.Padding(2);
 			this.dgvPacientes.Name = "dgvPacientes";
 			this.dgvPacientes.RowTemplate.Height = 24;
-			this.dgvPacientes.Size = new System.Drawing.Size(216, 227);
+			this.dgvPacientes.Size = new System.Drawing.Size(920, 82);
 			this.dgvPacientes.TabIndex = 3;
 			this.dgvPacientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPacientes_CellContentClick);
 			// 
-			// label3
+			// ID
 			// 
-			this.label3.Location = new System.Drawing.Point(40, -38);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(249, 168);
-			this.label3.TabIndex = 7;
-			this.label3.Text = "label3";
+			this.ID.FillWeight = 200F;
+			this.ID.HeaderText = "ID";
+			this.ID.Name = "ID";
+			this.ID.Width = 200;
+			// 
+			// PatientName
+			// 
+			this.PatientName.HeaderText = "Nombre de paciente";
+			this.PatientName.Name = "PatientName";
+			this.PatientName.Width = 200;
+			// 
+			// Birth
+			// 
+			this.Birth.HeaderText = "Fecha de nacimiento";
+			this.Birth.Name = "Birth";
+			// 
+			// Gender
+			// 
+			this.Gender.HeaderText = "Genero";
+			this.Gender.Name = "Gender";
+			// 
+			// Studies
+			// 
+			this.Studies.HeaderText = "Estudios";
+			this.Studies.Name = "Studies";
+			this.Studies.Width = 200;
+			// 
+			// Type
+			// 
+			this.Type.HeaderText = "Ti´po";
+			this.Type.Name = "Type";
+			this.Type.Width = 200;
 			// 
 			// FrmReporteMedico
 			// 
@@ -193,7 +231,7 @@ namespace MedicalReport
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "FrmReporteMedico";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Reporte médico";
@@ -222,7 +260,12 @@ namespace MedicalReport
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnListar;
-		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+		private System.Windows.Forms.DataGridViewTextBoxColumn PatientName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Birth;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Gender;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Studies;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Type;
 	}
 }
 
