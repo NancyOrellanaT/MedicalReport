@@ -217,6 +217,7 @@
 			this.btnPdf.TabIndex = 18;
 			this.btnPdf.Text = "PDF";
 			this.btnPdf.UseVisualStyleBackColor = true;
+			this.btnPdf.Click += new System.EventHandler(this.btnPdf_Click);
 			// 
 			// btnWord
 			// 
@@ -228,6 +229,7 @@
 			this.btnWord.TabIndex = 19;
 			this.btnWord.Text = "WORD";
 			this.btnWord.UseVisualStyleBackColor = true;
+			this.btnWord.Click += new System.EventHandler(this.btnWord_Click);
 			// 
 			// comboBox1
 			// 

@@ -54,3 +54,7 @@ C:\Dicom\finalreport\MedicalReport\MedicalReport\bin\Debug\Newtonsoft.Json.dll
 C:\Dicom\finalreport\MedicalReport\MedicalReport\bin\Debug\Newtonsoft.Json.pdb
 C:\Dicom\finalreport\MedicalReport\MedicalReport\bin\Debug\Newtonsoft.Json.xml
 C:\Dicom\finalreport\MedicalReport\MedicalReport\obj\Debug\MedicalReport.csproj.CopyComplete
+C:\Dicom\finalreport\MedicalReport\MedicalReport\bin\Debug\itextsharp.dll
+C:\Dicom\finalreport\MedicalReport\MedicalReport\bin\Debug\itextsharp.xml
+C:\Dicom\finalreport\MedicalReport\MedicalReport\bin\Debug\SautinSoft.PdfFocus.dll
+C:\Dicom\finalreport\MedicalReport\MedicalReport\bin\Debug\SautinSoft.PdfFocus.xml
