@@ -58,3 +58,11 @@ C:\Dicom\finalreport\MedicalReport\MedicalReport\bin\Debug\itextsharp.dll
 C:\Dicom\finalreport\MedicalReport\MedicalReport\bin\Debug\itextsharp.xml
 C:\Dicom\finalreport\MedicalReport\MedicalReport\bin\Debug\SautinSoft.PdfFocus.dll
 C:\Dicom\finalreport\MedicalReport\MedicalReport\bin\Debug\SautinSoft.PdfFocus.xml
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\itextsharp.dll
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\SautinSoft.PdfFocus.dll
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\itextsharp.xml
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\SautinSoft.PdfFocus.xml
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\MedicalReport.csproj.CopyComplete

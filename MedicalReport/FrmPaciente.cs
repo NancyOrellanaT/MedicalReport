@@ -45,14 +45,14 @@ namespace MedicalReport
 			if (nombreCompleto.Length >= 3)
 			{
 				txtNombres.Text = nombreCompleto[0];
-				txtApellidoMaterno.Text = nombreCompleto[1];
-				txtApellidoPaterno.Text = nombreCompleto[2];
+				//txtApellidoMaterno.Text = nombreCompleto[1];
+				//txtApellidoPaterno.Text = nombreCompleto[2];
 
 			}
 			else if (nombreCompleto.Length == 2)
 			{
 				txtNombres.Text = nombreCompleto[0];
-				txtApellidoMaterno.Text = nombreCompleto[1];
+				//txtApellidoMaterno.Text = nombreCompleto[1];
 			}
 			else
 			{
@@ -72,7 +72,7 @@ namespace MedicalReport
 			}
 			List<Studios.StudioCabeza> reportes = new List<Studios.StudioCabeza>(PacienteControl.ConvertirEstudios(studios));
 
-			label7.Text = valor;
+			//label7.Text = valor;
 			
 
 		}
