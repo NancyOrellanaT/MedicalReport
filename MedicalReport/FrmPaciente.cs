@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MedicalReport.Control;
+using MedicalReport.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -55,6 +57,18 @@ namespace MedicalReport
 			txtid.Text = selectedCells[0].Value.ToString();
 			txtfecha.Text = selectedCells[2].Value.ToString();
 			txtGenero.Text = selectedCells[3].Value.ToString();
+			//obtiene los datos
+			string valor = "";
+			string dirStudio= "http://localhost:8042/studies/";
+			for (int x=0;x<studios.Count;x++)
+			{
+				studios[x] = await PacsConexion.ObtenerDatos(dirStudio+studios[x]);
+				valor += studios[x];
+			}
+			List<Studios.StudioCabeza> reportes = new List<Studios.StudioCabeza>(PacienteControl.ConvertirEstudios(studios));
+
+			label7.Text = valor;
+			
 
 		}
 

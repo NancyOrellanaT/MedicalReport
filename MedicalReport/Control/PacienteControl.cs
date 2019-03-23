@@ -17,7 +17,8 @@ namespace MedicalReport.Control
 		/// <returns></returns>
 		public static async Task<List<string>> ObtenerPacientes()
 		{
-			var datos = await PacsConexion.ObtenerDatos("http://localhost:8042/patients/");
+			string dirPacientes = "http://localhost:8042/patients/";
+			var datos = await PacsConexion.ObtenerDatos(dirPacientes);
 			List<string> pacientes = new List<string>();
 
 			string valor = "";
@@ -31,7 +32,7 @@ namespace MedicalReport.Control
 				{
 					lista_pacintes[x] = lista_pacintes[x].Replace(',', ' ').Replace('"', ' ');
 					string[] idPaciente = lista_pacintes[x].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-					valor = (await PacsConexion.ObtenerDatos("http://localhost:8042/patients/" + idPaciente[0]));
+					valor = (await PacsConexion.ObtenerDatos(dirPacientes + idPaciente[0]));
 					pacientes.Add(valor);
 				}
 			}
@@ -39,7 +40,7 @@ namespace MedicalReport.Control
 			{
 				lista_pacintes[0] = lista_pacintes[0].Replace(',', ' ').Replace('"', ' ');
 				string[] idPaciente = lista_pacintes[0].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-				valor = (await PacsConexion.ObtenerDatos("http://localhost:8042/patients/" + idPaciente[1]));
+				valor = (await PacsConexion.ObtenerDatos(dirPacientes + idPaciente[1]));
 				pacientes.Add(valor);
 			}
 

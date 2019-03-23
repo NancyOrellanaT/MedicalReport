@@ -50,6 +50,7 @@
 			this.txtfecha = new System.Windows.Forms.TextBox();
 			this.txtid = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -276,11 +277,20 @@
 			this.label8.TabIndex = 44;
 			this.label8.Text = "ID";
 			// 
+			// label6
+			// 
+			this.label6.Location = new System.Drawing.Point(183, 338);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(365, 89);
+			this.label6.TabIndex = 45;
+			this.label6.Text = "label6";
+			// 
 			// FrmPaciente
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(937, 529);
+			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.txtid);
 			this.Controls.Add(this.txtfecha);
@@ -338,5 +348,6 @@
 		private System.Windows.Forms.TextBox txtfecha;
 		private System.Windows.Forms.TextBox txtid;
 		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label label6;
 	}
 }
