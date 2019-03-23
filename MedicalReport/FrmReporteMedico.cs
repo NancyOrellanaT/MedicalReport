@@ -20,6 +20,8 @@ namespace MedicalReport
 	
     public partial class FrmReporteMedico : Form
     {
+		List<Paciente.PacienteCabeza> DatosPacientes = new List<Paciente.PacienteCabeza>();
+
 		static private string valor = "";
 		public FrmReporteMedico()
         {
@@ -28,16 +30,24 @@ namespace MedicalReport
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-            if (dgvPacientes.SelectedRows.Count == 1)
-            {
-                FrmPaciente frmPaciente = new FrmPaciente();
-                frmPaciente.Show();
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar solamente un paciente.", "¡Error!");
-            }
-        }
+			FrmPaciente frmPaciente = new FrmPaciente(dgvPacientes.SelectedCells, DatosPacientes[dgvPacientes.CurrentRow.Index].Studies);
+
+			try
+			{
+
+
+				//FrmPaciente frmPaciente = new FrmPaciente(dgvPacientes.SelectedCells, DatosPacientes[dgvPacientes.CurrentRow.Index].Studies);
+
+				frmPaciente.Show();
+
+
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("Debe seleccionar solamente un paciente.", "¡Error!");
+
+			}
+		}
 		//lista  paciente
 		
 
@@ -48,16 +58,16 @@ namespace MedicalReport
 			List<string> pacientes = new List<string>(await PacienteControl.ObtenerPacientes());			
 			
 			//guarda datos de cada paciente
-			List<Paciente.PacienteCabeza> DatosPacientes=new List<Paciente.PacienteCabeza>(PacienteControl.ConvertirDatos(pacientes));
+			 DatosPacientes=new List<Paciente.PacienteCabeza>(PacienteControl.ConvertirDatos(pacientes));
 
 			//añado a la tabla
 			dgvPacientes.Rows.Clear();
 			foreach(var paciente in DatosPacientes)
 			{
-				string allstudies="";
+				int allstudies=0;
 				for(int x=0;x<paciente.Studies.Count;x++)
 				{
-					allstudies += paciente.Studies[x];
+					allstudies += 1;
 				}				
 				
 				this.dgvPacientes.Rows.Add(paciente.MainDicomTags.PatientID, paciente.MainDicomTags.PatientName,paciente.MainDicomTags.PatientBirthDate,paciente.MainDicomTags.PatientSex, allstudies, paciente.Type);

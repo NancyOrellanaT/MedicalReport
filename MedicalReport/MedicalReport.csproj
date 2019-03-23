@@ -54,6 +54,7 @@
     <Compile Include="Control\PacienteControl.cs" />
     <Compile Include="Control\PacsConexion.cs" />
     <Compile Include="Entity\Paciente.cs" />
+    <Compile Include="Entity\Studios.cs" />
     <Compile Include="FrmPaciente.cs">
       <SubType>Form</SubType>
     </Compile>

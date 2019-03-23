@@ -11,6 +11,10 @@ namespace MedicalReport.Control
 	class PacienteControl
 	{
 		//método que lista los pacientes
+		/// <summary>
+		/// obtiene todos los pacientes del Pacs
+		/// </summary>
+		/// <returns></returns>
 		public static async Task<List<string>> ObtenerPacientes()
 		{
 			var datos = await PacsConexion.ObtenerDatos("http://localhost:8042/patients/");
@@ -38,10 +42,15 @@ namespace MedicalReport.Control
 				valor = (await PacsConexion.ObtenerDatos("http://localhost:8042/patients/" + idPaciente[1]));
 				pacientes.Add(valor);
 			}
-			
+
 			return pacientes;
 		}
-		//convierte de JSON a objetos
+
+		/// <summary>
+		/// convierte de Json a objetos 
+		/// </summary>
+		/// <param name="pacientes"></param>
+		/// <returns>lsita de objetos de paciente</returns>
 		public static List<Paciente.PacienteCabeza> ConvertirDatos(List<string> pacientes)
 		{
 			List<Paciente.PacienteCabeza> DatosPacientes = new List<Paciente.PacienteCabeza>();
@@ -49,8 +58,23 @@ namespace MedicalReport.Control
 			{
 				DatosPacientes.Add(JsonConvert.DeserializeObject<Paciente.PacienteCabeza>(pacientes[x]));
 			}
-			
+
 			return DatosPacientes;
+		}
+		/// <summary>
+		/// convierte studios en objetos 
+		/// </summary>
+		/// <param name="studios"></param>
+		/// <returns>lista de objetos </returns>
+		public static List<Studios.StudioCabeza> ConvertirEstudios(List<string> studios)
+		{
+			List<Studios.StudioCabeza> datosStudios = new List<Studios.StudioCabeza>();
+			for (int x = 0; x < studios.Count; x++)
+			{
+				datosStudios.Add(JsonConvert.DeserializeObject<Studios.StudioCabeza>(studios[x]));
+			}
+
+			return datosStudios;
 		}
 
 	}
