@@ -48,7 +48,6 @@ namespace MedicalReport
 			txtfecha.Text = selectedCells[2].Value.ToString();
 			txtGenero.Text = selectedCells[3].Value.ToString();
 			//obtiene los datos
-			string valor = "";
 			string dirStudio= "http://localhost:8042/studies/";
 			for (int x=0;x<studios.Count;x++)
 			{
@@ -69,8 +68,6 @@ namespace MedicalReport
 			{
 				MessageBox.Show("Ocurrio un error al cargar el paciente, intente otra vez");
 			}
-			//label7.Text = valor;
-			
 
 		}
 		/// <summary>
@@ -107,8 +104,8 @@ namespace MedicalReport
 
 				var logo = iTextSharp.text.Image.GetInstance(dir);
 				logo.SetAbsolutePosition(400, 700);
-				logo.ScaleAbsoluteHeight(100);
-				logo.ScaleAbsoluteWidth(100);
+				logo.ScaleAbsoluteHeight(80);
+				logo.ScaleAbsoluteWidth(180);
 				doc.Add(logo);
 
 				PdfPTable table1 = new PdfPTable(2);
@@ -122,8 +119,8 @@ namespace MedicalReport
 				doc.Add(new Paragraph("\n \n \n \n \n \n Reporte de Paciente", boldFont));
 				doc.Add(new Paragraph("ID de paciente :  " + selectedCells[0].Value.ToString()));
 				doc.Add(new Paragraph("Nombre de Paciente :  " + selectedCells[1].Value.ToString().Replace('^',' ')));
-				doc.Add(new Paragraph("Género :  " + selectedCells[2].Value.ToString()));
-				doc.Add(new Paragraph("Fecha de nacimiento :  " + selectedCells[3].Value.ToString()));
+				doc.Add(new Paragraph("Género :  " + selectedCells[3].Value.ToString()));
+				doc.Add(new Paragraph("Fecha de nacimiento :  " + selectedCells[2].Value.ToString()));
 				doc.Add(new Paragraph("\n\n"));
 
 				//reporte 
@@ -137,7 +134,8 @@ namespace MedicalReport
 				doc.Add(new Paragraph("Hora de estudio :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.StudyTime));
 
 				doc.Close();
-				MessageBox.Show("Reporte creado con éxito. Fecha: " + DateTime.Now);
+				MessageBox.Show("Reporte creado con éxito. Fecha: " + DateTime.Now + ".");
+                Close();
 			}
 			catch (Exception)
 			{
@@ -170,7 +168,8 @@ namespace MedicalReport
 					System.Diagnostics.Process.Start(wordFile);
 				}
 			}
-			MessageBox.Show("Reporte creado con éxito.");
+
+			MessageBox.Show("Reporte creado con éxito.", "Importante");
 		}
 	}
 }
