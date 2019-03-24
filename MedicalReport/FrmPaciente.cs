@@ -22,6 +22,8 @@ namespace MedicalReport
 		string[] nombreCompleto;
 		DataGridViewSelectedCellCollection selectedCells;
 		List<string> studios;
+		List<Studios.StudioCabeza> reportes = new List<Studios.StudioCabeza>();
+
 		public FrmPaciente(DataGridViewSelectedCellCollection selectedCells, List<string> studios)
 		{
 			nombreCompleto = selectedCells[1].Value.ToString().Split('^');
@@ -68,151 +70,109 @@ namespace MedicalReport
 			for (int x=0;x<studios.Count;x++)
 			{
 				studios[x] = await PacsConexion.ObtenerDatos(dirStudio+studios[x]);
-				valor += studios[x];
+				
 			}
-			List<Studios.StudioCabeza> reportes = new List<Studios.StudioCabeza>(PacienteControl.ConvertirEstudios(studios));
-
+			 reportes = new List<Studios.StudioCabeza>(PacienteControl.ConvertirEstudios(studios));
+			try
+				
+			{
+				comboBox1.Items.Clear();
+				for (int x = 0; x < reportes.Count; x++)
+				{
+					comboBox1.Items.Add(reportes[x].MainDicomTags.StudyID + "-" + reportes[x].MainDicomTags.StudyDescription);
+				}
+			}
+			catch(Exception)
+			{
+				MessageBox.Show("Ocurrio un error al cargar el paciente, intente otra vez");
+			}
 			//label7.Text = valor;
 			
 
 		}
-
+		/// <summary>
+		/// crea el pfg a partir de los datos 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void btnPdf_Click(object sender, EventArgs e)
 		{
-			//creo el dpf
-			Document doc = new Document(PageSize.A4);
-			var output = new FileStream(("MyFirstPDF.pdf"), FileMode.Create);
-			var writer = PdfWriter.GetInstance(doc, output);
-
-
-			doc.Open();
-			string dir = Directory.GetCurrentDirectory() + "\\horda.jpg";
-
-			var logo = iTextSharp.text.Image.GetInstance(dir);
-			logo.SetAbsolutePosition(300, 600);
-			logo.ScaleAbsoluteHeight(200);
-			logo.ScaleAbsoluteWidth(200);
-			doc.Add(logo);
-
-			PdfPTable table1 = new PdfPTable(2);
-			table1.DefaultCell.Border = 0;
-			table1.WidthPercentage = 80;
-			var docTitle = new Paragraph("UCSC Direct - Direct Payment Form");
-			var titleFont = FontFactory.GetFont("Courier", 18, BaseColor.BLACK);
-
-			PdfPCell cell11 = new PdfPCell();
-			cell11.Colspan = 1;
-			cell11.AddElement(new Paragraph("ABC Traders Receipt", titleFont));
-
-			cell11.AddElement(new Paragraph("Thankyou for shoping at ABC traders,your order details are below", titleFont));
-
-
-			cell11.VerticalAlignment = Element.ALIGN_LEFT;
-
-			PdfPCell cell12 = new PdfPCell();
-
-
-			cell12.VerticalAlignment = Element.ALIGN_CENTER;
-
-
-			table1.AddCell(cell11);
-
-			table1.AddCell(cell12);
-
-
-			PdfPTable table2 = new PdfPTable(3);
-
-			//One row added
-
-			PdfPCell cell21 = new PdfPCell();
-
-			cell21.AddElement(new Paragraph("Photo Type"));
-
-			PdfPCell cell22 = new PdfPCell();
-
-			cell22.AddElement(new Paragraph("No. of Copies"));
-
-			PdfPCell cell23 = new PdfPCell();
-
-			cell23.AddElement(new Paragraph("Amount"));
-
-
-			table2.AddCell(cell21);
-
-			table2.AddCell(cell22);
-
-			table2.AddCell(cell23);
-
-
-			//New Row Added
-
-			PdfPCell cell31 = new PdfPCell();
-
-			cell31.AddElement(new Paragraph("Safe"));
-
-			cell31.FixedHeight = 300.0f;
-
-			PdfPCell cell32 = new PdfPCell();
-
-			cell32.AddElement(new Paragraph("2"));
-
-			cell32.FixedHeight = 300.0f;
-
-			PdfPCell cell33 = new PdfPCell();
-
-			cell33.AddElement(new Paragraph("20.00 * " + "2" + " = " + (20 * Convert.ToInt32("2")) + ".00"));
-
-			cell33.FixedHeight = 300.0f;
-
-
-
-			table2.AddCell(cell31);
-
-			table2.AddCell(cell32);
-
-			table2.AddCell(cell33);
-
-
-			PdfPCell cell2A = new PdfPCell(table2);
-
-			cell2A.Colspan = 2;
-
-			table1.AddCell(cell2A);
-
-			PdfPCell cell41 = new PdfPCell();
-
-			cell41.AddElement(new Paragraph("Name : " + "ABC"));
-
-			cell41.AddElement(new Paragraph("Advance : " + "advance"));
-
-			cell41.VerticalAlignment = Element.ALIGN_LEFT;
-
-			PdfPCell cell42 = new PdfPCell();
-
-			cell42.AddElement(new Paragraph("Customer ID : " + "011"));
-
-			cell42.AddElement(new Paragraph("Balance : " + "3993"));
-
-			cell42.VerticalAlignment = Element.ALIGN_RIGHT;
-
-
-			table1.AddCell(cell41);
-
-			table1.AddCell(cell42);
-
-
-			doc.Add(table1);
-
-			doc.Close();
-			MessageBox.Show("Reporte creato onc éxito");
+			CrearPdf();
 		}
 
 		private void btnWord_Click(object sender, EventArgs e)
 		{
-			string dir = Directory.GetCurrentDirectory() + "\\MyFirstPDF";
+			CrearPdf();
+			CrearWord();
+		}
+		public void CrearPdf()
+		{
+			Document doc = new Document(PageSize.A4);
+			try
+			{
+				//creo el dpf
+				var boldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
+				var titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 17);
 
-			string pdfFile = dir+".pdf";
-			string wordFile = dir+".docx";
+				var output = new FileStream(("reporte" + selectedCells[0].Value.ToString() + ".pdf"), FileMode.Create);
+				var writer = PdfWriter.GetInstance(doc, output);
+
+
+				doc.Open();
+				/// IMAGEN A CAMBIAR SE PONE EN ...\medicalreport\medicalreport\bin\debug y es ahi donde se genera el archivo pdf
+				string dir = Directory.GetCurrentDirectory() + "\\horda.jpg";
+
+				var logo = iTextSharp.text.Image.GetInstance(dir);
+				logo.SetAbsolutePosition(400, 700);
+				logo.ScaleAbsoluteHeight(100);
+				logo.ScaleAbsoluteWidth(100);
+				doc.Add(logo);
+
+				PdfPTable table1 = new PdfPTable(2);
+				table1.DefaultCell.Border = 0;
+				table1.WidthPercentage = 80;
+
+
+				Paragraph t1 = new Paragraph("Datos de paciente", titleFont);
+				t1.Alignment = (Element.ALIGN_CENTER);
+				doc.Add(t1);
+				doc.Add(new Paragraph("\n \n \n \n \n \n Reporte de Paciente", boldFont));
+				doc.Add(new Paragraph("ID de paciente :  " + selectedCells[0].Value.ToString()));
+				doc.Add(new Paragraph("Nombre de Paciente :  " + selectedCells[1].Value.ToString()));
+				doc.Add(new Paragraph("Género :  " + selectedCells[2].Value.ToString()));
+				doc.Add(new Paragraph("Fecha de nacimiento :  " + selectedCells[3].Value.ToString()));
+				doc.Add(new Paragraph("\n\n"));
+
+				//reporte 
+
+				doc.Add(new Paragraph("Datos de Estudio :  ", boldFont));
+				doc.Add(new Paragraph("Accesion Number :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.AccesionNumber));
+				doc.Add(new Paragraph("Fecha de estudio :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.StudyDate));
+				doc.Add(new Paragraph("Descripción :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.StudyDescription));
+				doc.Add(new Paragraph("Id de estudio :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.StudyID));
+				doc.Add(new Paragraph("InstanceUID de estudio :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.StudyInstanceUID));
+				doc.Add(new Paragraph("Hora de estudio :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.StudyTime));
+
+
+
+
+
+
+				doc.Close();
+				MessageBox.Show("Reporte creado con éxito");
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("Seleccione estudio");
+				doc.Close();
+			}
+		}
+		public void CrearWord()
+		{
+			string dir = Directory.GetCurrentDirectory() + "\\" + "reporte" + selectedCells[0].Value.ToString();
+
+			string pdfFile = dir + ".pdf";
+			string wordFile = dir + ".docx";
 
 			// Convert PDF file to DOCX file 
 			SautinSoft.PdfFocus f = new SautinSoft.PdfFocus();
