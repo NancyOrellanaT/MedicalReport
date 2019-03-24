@@ -66,3 +66,4 @@ C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\New
 C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\SautinSoft.PdfFocus.xml
 C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\obj\Debug\MedicalReport.csproj.CopyComplete
+C:\Users\Adriana Orellana\source\repos\MedicalReport\MedicalReport\bin\Debug\SautinSoft.PdfVision.dll

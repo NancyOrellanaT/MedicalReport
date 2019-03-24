@@ -120,7 +120,7 @@ namespace MedicalReport
 
 				doc.Open();
 				/// IMAGEN A CAMBIAR SE PONE EN ...\medicalreport\medicalreport\bin\debug y es ahi donde se genera el archivo pdf
-				string dir = Directory.GetCurrentDirectory() + "\\horda.jpg";
+				string dir = Directory.GetCurrentDirectory() + "\\logo.png";
 
 				var logo = iTextSharp.text.Image.GetInstance(dir);
 				logo.SetAbsolutePosition(400, 700);
@@ -153,17 +153,12 @@ namespace MedicalReport
 				doc.Add(new Paragraph("InstanceUID de estudio :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.StudyInstanceUID));
 				doc.Add(new Paragraph("Hora de estudio :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.StudyTime));
 
-
-
-
-
-
 				doc.Close();
-				MessageBox.Show("Reporte creado con éxito");
+				MessageBox.Show("Reporte creado con éxito. Fecha: " + DateTime.Now);
 			}
 			catch (Exception)
 			{
-				MessageBox.Show("Seleccione estudio");
+				MessageBox.Show("Seleccione estudio", "Importante");
 				doc.Close();
 			}
 		}
@@ -192,7 +187,7 @@ namespace MedicalReport
 					System.Diagnostics.Process.Start(wordFile);
 				}
 			}
-			MessageBox.Show("Reporte creado con éxito");
+			MessageBox.Show("Reporte creado con éxito.");
 		}
 	}
 }

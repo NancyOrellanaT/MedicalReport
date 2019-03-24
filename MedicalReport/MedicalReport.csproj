@@ -42,6 +42,9 @@
     <Reference Include="SautinSoft.PdfFocus, Version=7.0.3.12, Culture=neutral, PublicKeyToken=0b79b934109b3e9e, processorArchitecture=MSIL">
       <HintPath>..\packages\sautinsoft.pdffocus.7.0.3.18\lib\net461\SautinSoft.PdfFocus.dll</HintPath>
     </Reference>
+    <Reference Include="SautinSoft.PdfVision, Version=5.0.11.22, Culture=neutral, PublicKeyToken=9c847e093dd15dbf, processorArchitecture=MSIL">
+      <HintPath>..\packages\SautinSoft.PdfVision.5.0.13.10\lib\net45\SautinSoft.PdfVision.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
