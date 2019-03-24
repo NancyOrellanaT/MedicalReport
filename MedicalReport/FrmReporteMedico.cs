@@ -30,10 +30,10 @@ namespace MedicalReport
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-			FrmPaciente frmPaciente = new FrmPaciente(dgvPacientes.SelectedCells, DatosPacientes[dgvPacientes.CurrentRow.Index].Studies);
 
 			try
 			{
+				FrmPaciente frmPaciente = new FrmPaciente(dgvPacientes.SelectedCells, DatosPacientes[dgvPacientes.CurrentRow.Index].Studies);
 
 
 				//FrmPaciente frmPaciente = new FrmPaciente(dgvPacientes.SelectedCells, DatosPacientes[dgvPacientes.CurrentRow.Index].Studies);
@@ -72,6 +72,7 @@ namespace MedicalReport
 				
 				this.dgvPacientes.Rows.Add(paciente.MainDicomTags.PatientID, paciente.MainDicomTags.PatientName,paciente.MainDicomTags.PatientBirthDate,paciente.MainDicomTags.PatientSex, allstudies, paciente.Type);
 			}
+			MessageBox.Show("Listado de pacientes completo");
 		
 		}
 		

@@ -19,14 +19,13 @@ namespace MedicalReport
     {/// <summary>
 	/// variables globales para reportes 
 	/// </summary>
-		string[] nombreCompleto;
+		
 		DataGridViewSelectedCellCollection selectedCells;
 		List<string> studios;
 		List<Studios.StudioCabeza> reportes = new List<Studios.StudioCabeza>();
 
 		public FrmPaciente(DataGridViewSelectedCellCollection selectedCells, List<string> studios)
 		{
-			nombreCompleto = selectedCells[1].Value.ToString().Split('^');
 			this.selectedCells = selectedCells;
 			this.studios = studios;
 
@@ -44,23 +43,7 @@ namespace MedicalReport
 
 		private async void FrmPaciente_Load(object sender, EventArgs e)
 		{
-			if (nombreCompleto.Length >= 3)
-			{
-				txtNombres.Text = nombreCompleto[0];
-				//txtApellidoMaterno.Text = nombreCompleto[1];
-				//txtApellidoPaterno.Text = nombreCompleto[2];
-
-			}
-			else if (nombreCompleto.Length == 2)
-			{
-				txtNombres.Text = nombreCompleto[0];
-				//txtApellidoMaterno.Text = nombreCompleto[1];
-			}
-			else
-			{
-				txtNombres.Text = nombreCompleto[0];
-
-			}
+			txtNombres.Text = selectedCells[1].Value.ToString().Replace('^',' ');
 			txtid.Text = selectedCells[0].Value.ToString();
 			txtfecha.Text = selectedCells[2].Value.ToString();
 			txtGenero.Text = selectedCells[3].Value.ToString();
@@ -138,7 +121,7 @@ namespace MedicalReport
 				doc.Add(t1);
 				doc.Add(new Paragraph("\n \n \n \n \n \n Reporte de Paciente", boldFont));
 				doc.Add(new Paragraph("ID de paciente :  " + selectedCells[0].Value.ToString()));
-				doc.Add(new Paragraph("Nombre de Paciente :  " + selectedCells[1].Value.ToString()));
+				doc.Add(new Paragraph("Nombre de Paciente :  " + selectedCells[1].Value.ToString().Replace('^',' ')));
 				doc.Add(new Paragraph("Género :  " + selectedCells[2].Value.ToString()));
 				doc.Add(new Paragraph("Fecha de nacimiento :  " + selectedCells[3].Value.ToString()));
 				doc.Add(new Paragraph("\n\n"));
