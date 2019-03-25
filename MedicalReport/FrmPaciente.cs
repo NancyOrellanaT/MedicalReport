@@ -12,14 +12,15 @@ using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+using System.Globalization;
 
 namespace MedicalReport
 {
-    public partial class FrmPaciente : Form
-    {/// <summary>
-	/// variables globales para reportes 
-	/// </summary>
-		
+	public partial class FrmPaciente : Form
+	{/// <summary>
+	 /// variables globales para reportes 
+	 /// </summary>
+
 		DataGridViewSelectedCellCollection selectedCells;
 		List<string> studios;
 		List<Studios.StudioCabeza> reportes = new List<Studios.StudioCabeza>();
@@ -43,20 +44,22 @@ namespace MedicalReport
 
 		private async void FrmPaciente_Load(object sender, EventArgs e)
 		{
-			txtNombres.Text = selectedCells[1].Value.ToString().Replace('^',' ');
+			txtNombres.Text = selectedCells[1].Value.ToString().Replace('^', ' ');
 			txtid.Text = selectedCells[0].Value.ToString();
 			txtfecha.Text = selectedCells[2].Value.ToString();
+
 			txtGenero.Text = selectedCells[3].Value.ToString();
 			//obtiene los datos
-			string dirStudio= "http://localhost:8042/studies/";
-			for (int x=0;x<studios.Count;x++)
+			string valor = "";
+			string dirStudio = "http://localhost:8042/studies/";
+			for (int x = 0; x < studios.Count; x++)
 			{
-				studios[x] = await PacsConexion.ObtenerDatos(dirStudio+studios[x]);
-				
+				studios[x] = await PacsConexion.ObtenerDatos(dirStudio + studios[x]);
+
 			}
-			 reportes = new List<Studios.StudioCabeza>(PacienteControl.ConvertirEstudios(studios));
+			reportes = new List<Studios.StudioCabeza>(PacienteControl.ConvertirEstudios(studios));
 			try
-				
+
 			{
 				comboBox1.Items.Clear();
 				for (int x = 0; x < reportes.Count; x++)
@@ -64,10 +67,12 @@ namespace MedicalReport
 					comboBox1.Items.Add(reportes[x].MainDicomTags.StudyID + "-" + reportes[x].MainDicomTags.StudyDescription);
 				}
 			}
-			catch(Exception)
+			catch (Exception)
 			{
 				MessageBox.Show("Ocurrio un error al cargar el paciente, intente otra vez");
 			}
+			//label7.Text = valor;
+
 
 		}
 		/// <summary>
@@ -104,8 +109,8 @@ namespace MedicalReport
 
 				var logo = iTextSharp.text.Image.GetInstance(dir);
 				logo.SetAbsolutePosition(400, 700);
-				logo.ScaleAbsoluteHeight(80);
-				logo.ScaleAbsoluteWidth(180);
+				logo.ScaleAbsoluteHeight(100);
+				logo.ScaleAbsoluteWidth(170);
 				doc.Add(logo);
 
 				PdfPTable table1 = new PdfPTable(2);
@@ -118,24 +123,23 @@ namespace MedicalReport
 				doc.Add(t1);
 				doc.Add(new Paragraph("\n \n \n \n \n \n Reporte de Paciente", boldFont));
 				doc.Add(new Paragraph("ID de paciente :  " + selectedCells[0].Value.ToString()));
-				doc.Add(new Paragraph("Nombre de Paciente :  " + selectedCells[1].Value.ToString().Replace('^',' ')));
+				doc.Add(new Paragraph("Nombre de Paciente :  " + selectedCells[1].Value.ToString().Replace('^', ' ')));
 				doc.Add(new Paragraph("Género :  " + selectedCells[3].Value.ToString()));
-				doc.Add(new Paragraph("Fecha de nacimiento :  " + selectedCells[2].Value.ToString()));
+				doc.Add(new Paragraph("Fecha de nacimiento :  " +selectedCells[2].Value.ToString()));
 				doc.Add(new Paragraph("\n\n"));
 
 				//reporte 
 
 				doc.Add(new Paragraph("Datos de Estudio :  ", boldFont));
-				doc.Add(new Paragraph("Accesion Number :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.AccesionNumber));
-				doc.Add(new Paragraph("Fecha de estudio :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.StudyDate));
+				doc.Add(new Paragraph("Accesion Number :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.AccessionNumber));
+				doc.Add(new Paragraph("Fecha de estudio :  " + DateTime.ParseExact(reportes[comboBox1.SelectedIndex].MainDicomTags.StudyDate, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd")));
 				doc.Add(new Paragraph("Descripción :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.StudyDescription));
 				doc.Add(new Paragraph("Id de estudio :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.StudyID));
 				doc.Add(new Paragraph("InstanceUID de estudio :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.StudyInstanceUID));
-				doc.Add(new Paragraph("Hora de estudio :  " + reportes[comboBox1.SelectedIndex].MainDicomTags.StudyTime));
-
+				doc.Add(new Paragraph("Hora de estudio :  " + DateTime.ParseExact(reportes[comboBox1.SelectedIndex].MainDicomTags.StudyTime, "HHmmss", CultureInfo.InvariantCulture).ToString("HH:mm:ss")));
+				//HH:mm:ss.fff
 				doc.Close();
-				MessageBox.Show("Reporte creado con éxito. Fecha: " + DateTime.Now + ".");
-                Close();
+				MessageBox.Show("Reporte creado con éxito. Fecha: " + DateTime.Now);
 			}
 			catch (Exception)
 			{
@@ -168,8 +172,7 @@ namespace MedicalReport
 					System.Diagnostics.Process.Start(wordFile);
 				}
 			}
-
-			MessageBox.Show("Reporte creado con éxito.", "Importante");
+			MessageBox.Show("Reporte creado con éxito.");
 		}
 	}
 }

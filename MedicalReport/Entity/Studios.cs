@@ -18,7 +18,7 @@ namespace MedicalReport.Entity
 		}
 		public class MainDicomTags
 		{
-			public string AccesionNumber { get; set; }
+			public string AccessionNumber { get; set; }
 			public string StudyDate { get; set; }
 			public string StudyDescription { get; set; }
 			public string StudyID { get; set; }

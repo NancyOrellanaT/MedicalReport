@@ -14,6 +14,7 @@ using System.Web.Script.Serialization;
 using MedicalReport.Entity;
 using Newtonsoft.Json;
 using System.Reflection;
+using System.Globalization;
 
 namespace MedicalReport
 {
@@ -68,9 +69,19 @@ namespace MedicalReport
 				for(int x=0;x<paciente.Studies.Count;x++)
 				{
 					allstudies += 1;
-				}				
-				
-				this.dgvPacientes.Rows.Add(paciente.MainDicomTags.PatientID, paciente.MainDicomTags.PatientName,paciente.MainDicomTags.PatientBirthDate,paciente.MainDicomTags.PatientSex, allstudies, paciente.Type);
+				}
+				string fecha;
+				try
+				{
+					 fecha = DateTime.ParseExact(paciente.MainDicomTags.PatientBirthDate, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd");
+				}
+				catch(Exception)
+				{
+					fecha = "";
+				}
+
+
+				this.dgvPacientes.Rows.Add(paciente.MainDicomTags.PatientID, paciente.MainDicomTags.PatientName,fecha ,paciente.MainDicomTags.PatientSex, allstudies, paciente.Type);
 			}
 			MessageBox.Show("Listado de pacientes completo");
 		
