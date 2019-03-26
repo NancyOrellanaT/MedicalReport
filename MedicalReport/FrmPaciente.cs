@@ -44,7 +44,10 @@ namespace MedicalReport
 
 		private async void FrmPaciente_Load(object sender, EventArgs e)
 		{
-			txtNombres.Text = selectedCells[1].Value.ToString().Replace('^', ' ');
+			try
+
+			{
+				txtNombres.Text = selectedCells[1].Value.ToString().Replace('^', ' ');
 			txtid.Text = selectedCells[0].Value.ToString();
 			txtfecha.Text = selectedCells[2].Value.ToString();
 
@@ -58,9 +61,7 @@ namespace MedicalReport
 
 			}
 			reportes = new List<Studios.StudioCabeza>(PacienteControl.ConvertirEstudios(studios));
-			try
-
-			{
+			
 				comboBox1.Items.Clear();
 				for (int x = 0; x < reportes.Count; x++)
 				{

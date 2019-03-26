@@ -54,37 +54,42 @@ namespace MedicalReport
 
 		//boton de listas
 		private async void btnListar_ClickAsync(object sender, EventArgs e)
-		{ 
-			//obtiene los datos
-			List<string> pacientes = new List<string>(await PacienteControl.ObtenerPacientes());			
-			
-			//guarda datos de cada paciente
-			 DatosPacientes=new List<Paciente.PacienteCabeza>(PacienteControl.ConvertirDatos(pacientes));
-
-			//añado a la tabla
-			dgvPacientes.Rows.Clear();
-			foreach(var paciente in DatosPacientes)
+		{
+			try
 			{
-				int allstudies=0;
-				for(int x=0;x<paciente.Studies.Count;x++)
+				//obtiene los datos
+				List<string> pacientes = new List<string>(await PacienteControl.ObtenerPacientes());
+
+				//guarda datos de cada paciente
+				DatosPacientes = new List<Paciente.PacienteCabeza>(PacienteControl.ConvertirDatos(pacientes));
+
+				//añado a la tabla
+				dgvPacientes.Rows.Clear();
+				foreach (var paciente in DatosPacientes)
 				{
-					allstudies += 1;
-				}
-				string fecha;
-				try
-				{
-					 fecha = DateTime.ParseExact(paciente.MainDicomTags.PatientBirthDate, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd");
-				}
-				catch(Exception)
-				{
-					fecha = "";
-				}
+					int allstudies = 0;
+					for (int x = 0; x < paciente.Studies.Count; x++)
+					{
+						allstudies += 1;
+					}
+					string fecha;
+					try
+					{
+						fecha = DateTime.ParseExact(paciente.MainDicomTags.PatientBirthDate, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd");
+					}
+					catch (Exception)
+					{
+						fecha = "";
+					}
 
 
-				this.dgvPacientes.Rows.Add(paciente.MainDicomTags.PatientID, paciente.MainDicomTags.PatientName,fecha ,paciente.MainDicomTags.PatientSex, allstudies, paciente.Type);
+					this.dgvPacientes.Rows.Add(paciente.MainDicomTags.PatientID, paciente.MainDicomTags.PatientName, fecha, paciente.MainDicomTags.PatientSex, allstudies, paciente.Type);
+				}
+				MessageBox.Show("Listado de pacientes completo");
+			}catch(Exception)
+			{
+				MessageBox.Show("No hay pacientes");
 			}
-			MessageBox.Show("Listado de pacientes completo");
-		
 		}
 		
 

@@ -13,8 +13,14 @@ namespace MedicalReport.Control
 	{
 		//variables que contiene la respuesta de "Obtenerdatos"
 		public static string  valor ="";
-		
+
+	
+		/// <summary>
+		/// 
 		// hacer un "request" al pacs segun lo necesario"
+		/// </summary>
+		/// <param name="url"></param>
+		/// <returns></returns>
 		public async static Task<string> ObtenerDatos(string url)
 		{
 
